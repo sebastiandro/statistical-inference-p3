@@ -105,3 +105,15 @@ rank_mean_pairs = nchoosek(rank_group_means,2);
 rank_differences = abs(rank_mean_pairs(:,1) - rank_mean_pairs(:,2));
 
 %% Task f
+% Setting up a ANOVA for sleep time
+
+sleep_matrix = [group1.sleep group2.sleep group3.sleep group4.sleep group5.sleep];
+total_mean = mean(mean(sleep_matrix));
+
+SB = J*sum((mean(sleep_matrix)-total_mean).^2);
+SW = (J-1)*(sum(var(sleep_matrix))); % SW or Error
+STOT = SW + SB; 
+
+sleep_group_means = mean(sleep_matrix);
+sleep_mean_pairs = nchoosek(sleep_group_means,2);
+sleep_differences = abs(sleep_mean_pairs(:,1) - sleep_mean_pairs(:,2));
